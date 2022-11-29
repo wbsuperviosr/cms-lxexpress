@@ -44,9 +44,19 @@ export default {
       name: 'categories',
       title: 'Categories',
       description: "分类",
-      type: 'array',
-      of: [{ type: 'reference', to: { type: 'category' } }],
+      type: 'reference',
+      to: { type: 'category' },
+      // of: [{ type: 'reference', to: { type: 'category' } }],
     },
+    {
+      name: 'subcategories',
+      title: 'Subcategories',
+      description: "子分类",
+      type: 'reference',
+      to: { type: 'subcategory' },
+      // of: [{ type: 'reference', to: { type: 'category' } }],
+    },
+
     {
       name: 'tags',
       title: 'Tags',
@@ -69,6 +79,12 @@ export default {
       description: "创作时间",
       title: 'Written at',
       type: 'datetime',
+    },
+    {
+      name: 'description',
+      title: 'Short Description',
+      description: '文章摘要',
+      type: 'text',
     },
     {
       name: 'body',

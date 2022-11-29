@@ -12,6 +12,7 @@ import author from './author'
 import people from './people'
 import casefiles from './casefiles'
 import media from './media'
+import subcategory from './subcategory'
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -24,6 +25,7 @@ export default createSchema({
     post,
     author,
     category,
+    subcategory,
     people,
     casefiles,
     media,
