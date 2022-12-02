@@ -14,8 +14,10 @@
     "sanity"
   ],
   "dependencies": {
+    "@heroicons/react": "^2.0.13",
     "@sanity/base": "^2.35.2",
     "@sanity/core": "^2.35.0",
+    "@sanity/dashboard": "^2.36.0",
     "@sanity/default-layout": "^2.35.2",
     "@sanity/default-login": "^2.35.2",
     "@sanity/desk-tool": "^2.35.2",
@@ -25,7 +27,7 @@
     "prop-types": "^15.7",
     "react": "^17.0",
     "react-dom": "^17.0",
-    "sanity-super-pane": "^1.0.0-alpha.11",
+    "sanity-plugin-dashboard-widget-document-list": "^0.0.13",
     "styled-components": "^5.2.0"
   }
 }

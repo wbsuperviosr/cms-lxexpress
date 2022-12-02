@@ -88,21 +88,55 @@ export default {
     },
     {
       name: 'body',
-      description: "文章主体markdown",
+      description: "文章主体",
       title: 'Body',
       type: 'blockContent',
     },
+  ],
+
+  orderings: [
+    {
+      title: "Featured",
+      name: "sortFeatured",
+      by: [
+        { field: "featured", direction: "asc" }
+      ]
+    },
+    {
+      title: "Author",
+      name: "sortAuthor",
+      by: [
+        { field: "author.name", direction: "asc" }
+      ]
+    },
+    {
+      title: "Latest Written Date",
+      name: "sortWritten",
+      by: [
+        { field: "writtenAt", direction: "desc" }
+      ]
+    },
+    {
+      title: "Latest Publish Date",
+      name: "sortWritten",
+      by: [
+        { field: "publishAt", direction: "desc" }
+      ]
+    },
+
   ],
 
   preview: {
     select: {
       title: 'title',
       author: 'author.name',
+      featured: 'featured',
     },
     prepare(selection) {
-      const { author } = selection
+      const { author, featured } = selection
+      const f = featured ? "Featured" : ""
       return Object.assign({}, selection, {
-        subtitle: author && `by ${author}`,
+        subtitle: author && `by ${author} ${f}`,
       })
     },
   },
