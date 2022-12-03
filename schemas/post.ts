@@ -132,7 +132,7 @@ export default {
       author: 'author.name',
       featured: 'featured',
     },
-    prepare(selection) {
+    prepare(selection: any) {
       const { author, featured } = selection
       const f = featured ? "Featured" : ""
       return Object.assign({}, selection, {
