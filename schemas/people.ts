@@ -1,6 +1,6 @@
 export default {
     name: 'people',
-    title: 'People',
+    title: '人物',
     type: 'document',
     fields: [
         {

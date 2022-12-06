@@ -1,6 +1,6 @@
 export default {
   name: 'post',
-  title: 'Post',
+  title: '帖子',
   type: 'document',
   fields: [
     {

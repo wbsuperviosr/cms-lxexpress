@@ -6,7 +6,6 @@ import { netlifyWidget } from "sanity-plugin-dashboard-widget-netlify";
 import { documentListWidget } from "sanity-plugin-dashboard-widget-document-list";
 import { visionTool } from '@sanity/vision'
 
-
 export default defineConfig({
   name: 'default',
   title: 'lxexpressCMS',
@@ -29,9 +28,10 @@ export default defineConfig({
         title: "liuxin.express",
         sites: [{
           title: "Sanity Studio",
-          apiId: "test",
-          buildHookId: "test",
-          url: "https://liuxin.express"
+          apiId: "5b22a292-3661-4a71-85a4-920213d93460",
+          buildHookId: "https://api.netlify.com/build_hooks/638b56760bb609282532cf47",
+          branch: "next"
+          // url: "https://liuxin.express"
         }],
         layout: { width: "small" }
       }),

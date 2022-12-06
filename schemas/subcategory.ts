@@ -1,6 +1,6 @@
 export default {
     name: 'subcategory',
-    title: 'Subcategory',
+    title: '子类别',
     type: 'document',
     fields: [
         {

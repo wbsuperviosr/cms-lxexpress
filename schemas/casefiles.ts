@@ -1,6 +1,6 @@
 export default {
     name: 'casefiles',
-    title: 'Casefiles',
+    title: '卷宗',
     type: 'document',
     fields: [
         {
