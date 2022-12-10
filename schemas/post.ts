@@ -1,3 +1,6 @@
+import { Rule } from "sanity"
+
+
 export default {
   name: 'post',
   title: '帖子',
@@ -8,16 +11,23 @@ export default {
       title: 'Title',
       description: "文章标题",
       type: 'string',
+      validation: (Rule:Rule) => {
+        return Rule.required().error("请输入标题")
+      }
     },
     {
       name: 'slug',
       title: 'Slug',
-      description: "url链接",
+      description: "url链接(必填，如果你不知道怎么命名，请暂时随机填拼音，果酱会重新填写)",
       type: 'slug',
       options: {
         source: 'title',
         maxLength: 96,
       },
+      validation: (Rule:Rule) => {
+        return Rule.required().error("链接名称（可暂时随机拼音）")
+      }
+
     },
     {
       name: 'author',
@@ -25,6 +35,9 @@ export default {
       description: "作者",
       type: 'reference',
       to: { type: 'author' },
+      validation: (Rule:Rule) => {
+        return Rule.required().error("请选择作者，不知道请选择匿名")
+      }
     },
     {
       name: 'mainImageUrl',
@@ -41,26 +54,30 @@ export default {
     },
 
     {
-      name: 'categories',
-      title: 'Categories',
+      name: 'category',
+      title: 'Category',
       description: "分类",
       type: 'reference',
       to: { type: 'category' },
-      // of: [{ type: 'reference', to: { type: 'category' } }],
+      validation: (Rule:Rule) => {
+        return Rule.required().error("请选择分类！否则不会在网页显示")
+      }
     },
     {
-      name: 'subcategories',
-      title: 'Subcategories',
+      name: 'subcategory',
+      title: 'Subcategory',
       description: "子分类",
       type: 'reference',
       to: { type: 'subcategory' },
-      // of: [{ type: 'reference', to: { type: 'category' } }],
+      validation: (Rule:Rule) => {
+        return Rule.required().error("请选择子分类！否则不会在网页显示")
+      }
     },
 
     {
       name: 'tags',
       title: 'Tags',
-      description: "文章tag",
+      description: "文章标签（请选择1-2个文章标签）",
       type: 'array',
       of: [{ type: 'string' }],
       options: {
@@ -83,8 +100,11 @@ export default {
     {
       name: 'description',
       title: 'Short Description',
-      description: '文章摘要',
+      description: '文章摘要（请控制在140字之内）',
       type: 'text',
+      validation: (Rule:Rule) => {
+        return Rule.required().max(150).error("文章摘要，140字之内")
+      }
     },
     {
       name: 'body',
@@ -103,21 +123,21 @@ export default {
       ]
     },
     {
-      title: "Author",
+      title: "作者",
       name: "sortAuthor",
       by: [
         { field: "author.name", direction: "asc" }
       ]
     },
     {
-      title: "Latest Written Date",
+      title: "写作时间",
       name: "sortWritten",
       by: [
         { field: "writtenAt", direction: "desc" }
       ]
     },
     {
-      title: "Latest Publish Date",
+      title: "发表时间",
       name: "sortWritten",
       by: [
         { field: "publishAt", direction: "desc" }

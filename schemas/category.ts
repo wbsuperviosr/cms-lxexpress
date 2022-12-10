@@ -37,4 +37,13 @@ export default {
     },
 
   ],
+  orderings:[
+    {
+      title: "顺序",
+      name: "orderOrder",
+      by: [
+        { field: "order", direction: "desc" }
+      ]
+    },
+  ]
 }
