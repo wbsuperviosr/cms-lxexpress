@@ -1,6 +1,13 @@
 import { Rule } from "sanity"
 
 type Nullable = string | null;
+type ImageType = {
+    urlField:string;
+    url_title:string;
+    _key:string;
+    _type:string;
+}
+
 
 export default {
     name: 'timeline',
@@ -113,10 +120,16 @@ export default {
                 to: { type: 'people' },
                 title: "添加事件人物（如果不存在可以创建）"
             }],
-            validation: (Rule: Rule) => (Rule.custom((people: Array<string>) => {
+            validation: (Rule: Rule) => (Rule.custom((people: Array<Object>) => {
                 if (people.length == 0) {
                     return "你至少的选择一个当事人，或者创建一个"
                 }
+                for (const p of people) {
+                    if(!p.hasOwnProperty("_ref")){
+                        return "人物不可以为空，选择已有人物或者新建一个"
+                    }
+                }
+                
                 return true;
             }))
         },
@@ -130,7 +143,7 @@ export default {
         {
             name: 'source_urls',
             title: '资料链接',
-            description: '用于作证事件的资料链接和标题，若未知可以留空。',
+            description: '用于作证事件的资料链接和标题，若未知可以留空。点击下方Add item进行添加，添加完毕后随意点击弹窗之外的地方就可以保存并且自动保存。',
             type: 'array',
             of: [
                 {
@@ -157,7 +170,7 @@ export default {
         {
             name: 'image_urls',
             title: '图片链接',
-            description: '用于作证事件的图片链接和标题，若未知可以留空。',
+            description: '用于作证事件的图片链接和标题，若未知可以留空。点击下方Add item进行添加，添加完毕后随意点击弹窗之外的地方就可以保存并且自动保存。',
             type: 'array',
             of: [
                 {
@@ -166,20 +179,31 @@ export default {
                     type: 'object',
                     fields: [
                         {
-                            title: '链接',
-                            description: '图片链接',
-                            name: 'urlField',
-                            type: 'url'
-                        },
-                        {
                             title: "图片名称",
                             description: "（例如江歌刘鑫对话微信截图1）",
                             name: "url_title",
                             type: "string",
+                        },
+                        {
+                            title: '链接',
+                            description: '图片链接',
+                            name: 'urlField',
+                            type: 'string'
                         }
                     ]
                 }
-            ]
+            ],
+            validation: (Rule:Rule) => (Rule.custom((images:Array<ImageType>) => {
+                for (const image of images) {
+                    if(!image.urlField){
+                        return "图片链接不能为空，请检查图片链接"
+                    }
+                    if(!image.url_title){
+                        return "图片名称不能为空，请检查图片名称"
+                    }
+                }
+                return true
+            }))
         },
 
         {
@@ -189,7 +213,7 @@ export default {
             type: 'reference',
             to: { type: 'timeline_category' },
             validation: (Rule: Rule) => Rule.required().error("请选择一个事件性质"),
-        },
+        }, 
         {
             name: 'tags',
             title: '标签',

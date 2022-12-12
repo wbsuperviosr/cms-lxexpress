@@ -41,7 +41,7 @@ export default {
     },
     {
       name: 'mainImageUrl',
-      description: "文章图片链接，e.g., OneDrive",
+      description: "文章配图链接，e.g., OneDrive",
       title: 'Main image URL',
       type: 'url',
     },
@@ -87,15 +87,17 @@ export default {
 
     {
       name: 'publishedAt',
-      description: "发表时间",
+      description: "发表时间。发表时间只指发表在我们网站的时间，不一定是写作时间。例如刘鑫在2017年的文章，我们在2022年12月12日进行收录。",
       title: 'Published at',
       type: 'datetime',
+      validation: (Rule:Rule) => Rule.required().error("请选择发表时间，点击右边的日历项进行选择")
     },
     {
       name: 'writtenAt',
-      description: "创作时间",
+      description: "写作时间。如果不清楚，就大概选一个吧，这个应该也没有人会特别注意。",
       title: 'Written at',
       type: 'datetime',
+      validation: (Rule:Rule) => Rule.required().error("请选择写作时间，点击右边的日历项进行选择")
     },
     {
       name: 'description',
@@ -111,6 +113,7 @@ export default {
       description: "文章主体",
       title: 'Body',
       type: 'blockContent',
+      validation: (Rule:Rule) => Rule.required().error("请填写文字啊")
     },
   ],
 
@@ -140,7 +143,7 @@ export default {
       title: "发表时间",
       name: "sortWritten",
       by: [
-        { field: "publishAt", direction: "desc" }
+        { field: "publishedAt", direction: "desc" }
       ]
     },
 

@@ -42,7 +42,7 @@ export default {
       title: "顺序",
       name: "orderOrder",
       by: [
-        { field: "order", direction: "desc" }
+        { field: "order", direction: "asc" }
       ]
     },
   ]
