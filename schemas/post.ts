@@ -68,10 +68,7 @@ export default {
       title: 'Subcategory',
       description: "子分类",
       type: 'reference',
-      to: { type: 'subcategory' },
-      validation: (Rule:Rule) => {
-        return Rule.required().error("请选择子分类！否则不会在网页显示")
-      }
+      to: { type: 'subcategory' }
     },
 
     {

@@ -155,13 +155,15 @@ export default {
                             title: '链接',
                             description: '资料链接',
                             name: 'urlField',
-                            type: 'url'
+                            type: 'url',
+                            validation:(Rule:Rule)=>Rule.required().error("请输入资料链接")
                         },
                         {
                             title: "资料标题",
                             description: "（日本刑事审判书）",
                             name: "url_title",
                             type: "string",
+                            validation:(Rule:Rule)=>Rule.required().error("请输入资料标题")
                         }
                     ]
                 }
@@ -182,7 +184,7 @@ export default {
                             title: "图片名称",
                             description: "（例如江歌刘鑫对话微信截图1）",
                             name: "url_title",
-                            type: "string",
+                            type: "string"
                         },
                         {
                             title: '链接',
@@ -194,26 +196,36 @@ export default {
                 }
             ],
             validation: (Rule:Rule) => (Rule.custom((images:Array<ImageType>) => {
-                for (const image of images) {
-                    if(!image.urlField){
-                        return "图片链接不能为空，请检查图片链接"
-                    }
-                    if(!image.url_title){
-                        return "图片名称不能为空，请检查图片名称"
+                if(images){
+                    for (const image of images) {
+                        if(!image.urlField){
+                            return "图片链接不能为空，请检查图片链接"
+                        }
+                        if(!image.url_title){
+                            return "图片名称不能为空，请检查图片名称"
+                        }
                     }
                 }
                 return true
             }))
         },
-
         {
             name: 'type',
             title: '事件性质',
-            description: '请选择下列五个种类之一',
-            type: 'reference',
-            to: { type: 'timeline_category' },
-            validation: (Rule: Rule) => Rule.required().error("请选择一个事件性质"),
-        }, 
+            description: '请选择下列五个种类之一', 
+            type:"string",
+            validation:(Rule:Rule)=>Rule.required().error("请根据以下列表选择事件性质"),
+            options:{
+                list:[
+                    '人物前情',
+                    '公器失位',
+                    '归案构陷',
+                    '案发当日',
+                    '舆论失焦'
+                ],
+                layout:'radio'
+            }
+        },
         {
             name: 'tags',
             title: '标签',
