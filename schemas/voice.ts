@@ -1,8 +1,8 @@
 import {Rule} from 'sanity'
 
 export default {
-  name: 'post',
-  title: '暖曦话语',
+  name: 'voice',
+  title: '观者评说',
   type: 'document',
   fields: [
     {
@@ -57,13 +57,14 @@ export default {
       description: '分类',
       type: 'string',
       options: {
-        list: ['过往残篇', '今时尽言'],
+        list: ['价值讨论', '法律研讨', '案情推理', '创意作品'],
         layout: 'radio',
       },
       validation: (Rule: Rule) => {
         return Rule.required().error('请选择分类！否则不会在网页显示')
       },
     },
+
     {
       name: 'tags',
       title: 'Tags',
@@ -111,7 +112,7 @@ export default {
       title: '主题',
       description: '帖子类别（默认项，无需修改）',
       type: 'string',
-      initialValue: '暖曦话语',
+      initialValue: '观者评说',
     },
   ],
 
@@ -142,13 +143,14 @@ export default {
     select: {
       title: 'title',
       author: 'author.name',
+      category: 'category',
       featured: 'featured',
     },
     prepare(selection: any) {
-      const {author, featured} = selection
+      const {author, category, featured} = selection
       const f = featured ? 'Featured' : ''
       return Object.assign({}, selection, {
-        subtitle: author && `by ${author} ${f}`,
+        subtitle: author && `${category} ${author} ${f}`,
       })
     },
   },
