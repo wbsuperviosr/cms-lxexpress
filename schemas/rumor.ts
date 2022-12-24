@@ -34,13 +34,15 @@ export default {
       name: 'rumor_spreader',
       title: '谣言来源者',
       description: '最先传出该谣言的是谁，例如：徐静波，江秋莲等等',
-      type: 'string',
+      type: 'array',
+      of: [{type: 'string'}],
     },
     {
       name: 'rumor_victim',
       title: '被造谣者',
       description: '被造谣的是谁，例如：刘鑫，江歌等等',
-      type: 'string',
+      type: 'array',
+      of: [{type: 'string'}],
     },
 
     {
@@ -187,6 +189,18 @@ export default {
           ],
         },
       ],
+    },
+  ],
+  orderings: [
+    {
+      title: '谣言疑问',
+      name: 'sortQuestion',
+      by: [{field: 'question', direction: 'desc'}],
+    },
+    {
+      title: '严重程度',
+      name: 'sortImportance',
+      by: [{field: 'importance', direction: 'desc'}],
     },
   ],
   preview: {

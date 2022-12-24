@@ -44,7 +44,7 @@ export default {
       description: '用于区分视频内容的分类',
       type: 'string',
       options: {
-        list: ['案情相关', '媒体报道', '创意作品'],
+        list: ['案情相关', '媒体报道'],
         layout: 'radio',
       },
     },

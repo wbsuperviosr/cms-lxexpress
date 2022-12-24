@@ -1,12 +1,5 @@
 import {Rule} from 'sanity'
 
-type ImageType = {
-  urlField: string
-  url_title: string
-  _key: string
-  _type: string
-}
-
 export default {
   name: 'casefiles',
   title: '卷宗',
@@ -103,20 +96,6 @@ export default {
           ],
         },
       ],
-      validation: (Rule: Rule) =>
-        Rule.custom((images: Array<ImageType>) => {
-          if (images) {
-            for (const image of images) {
-              if (!image.urlField) {
-                return '图片链接不能为空，请检查图片链接'
-              }
-              if (!image.url_title) {
-                return '图片名称不能为空，请检查图片名称'
-              }
-            }
-          }
-          return true
-        }),
     },
     {
       name: 'classification',

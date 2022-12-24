@@ -119,7 +119,7 @@ export default {
     {
       title: 'Featured',
       name: 'sortFeatured',
-      by: [{field: 'featured', direction: 'asc'}],
+      by: [{field: 'featured', direction: 'desc'}],
     },
     {
       title: '作者',
