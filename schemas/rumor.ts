@@ -62,7 +62,7 @@ export default {
     {
       name: 'tags',
       title: '标签',
-      description: '谣言标签（请用1-2个谣言标签用于分类谣言）',
+      description: '谣言标签（请用1-2个谣言标签用于分类谣言，输入后按回车键确认）',
       type: 'array',
       of: [{type: 'string'}],
       options: {

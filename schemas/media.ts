@@ -51,7 +51,7 @@ export default {
     {
       name: 'tags',
       title: '标签',
-      description: '视频标签（请选择1-2个文章标签）',
+      description: '视频标签（请选择1-2个文章标签,输入后按回车键确认）',
       type: 'array',
       of: [{type: 'string'}],
       options: {
