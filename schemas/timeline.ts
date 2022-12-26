@@ -148,23 +148,16 @@ export default {
 
     {
       name: 'source_urls',
-      title: '资料链接',
+      title: '文章资料链接',
       description:
         '用于作证事件的资料链接和标题，若未知可以留空。点击下方Add item进行添加，添加完毕后随意点击弹窗之外的地方就可以保存并且自动保存。',
       type: 'array',
       of: [
         {
-          title: '资料链接',
+          title: '文章资料链接',
           name: 'source_urlObject',
           type: 'object',
           fields: [
-            {
-              title: '链接',
-              description: '资料链接',
-              name: 'urlField',
-              type: 'url',
-              validation: (Rule: Rule) => Rule.required().error('请输入资料链接'),
-            },
             {
               title: '资料标题',
               description: '（日本刑事审判书）',
@@ -172,31 +165,38 @@ export default {
               type: 'string',
               validation: (Rule: Rule) => Rule.required().error('请输入资料标题'),
             },
+            {
+              title: '链接',
+              description: '资料链接',
+              name: 'urlField',
+              type: 'string',
+              validation: (Rule: Rule) => Rule.required().error('请输入资料链接'),
+            },
           ],
         },
       ],
     },
     {
       name: 'image_urls',
-      title: '图片链接',
+      title: '媒体资料链接',
       description:
-        '用于作证事件的图片链接和标题，若未知可以留空。点击下方Add item进行添加，添加完毕后随意点击弹窗之外的地方就可以保存并且自动保存。',
+        '用于作证事件的图片/视频链接和标题，若未知可以留空。点击下方Add item进行添加，添加完毕后随意点击弹窗之外的地方就可以保存并且自动保存。',
       type: 'array',
       of: [
         {
-          title: '图片链接',
+          title: '图片/视频链接',
           name: 'image_urlObject',
           type: 'object',
           fields: [
             {
-              title: '图片名称',
+              title: '图片/视频名称',
               description: '（例如江歌刘鑫对话微信截图1）',
               name: 'url_title',
               type: 'string',
             },
             {
               title: '链接',
-              description: '图片链接',
+              description: '图片/视频链接',
               name: 'urlField',
               type: 'string',
             },
@@ -245,6 +245,7 @@ export default {
       title: '事件内容',
       description: '为了阅读体验，请尽量不要超过140字',
       type: 'blockContent',
+      validation: (Rule: Rule) => Rule.required().error('请填写事件具体内容'),
     },
   ],
   orderings: [

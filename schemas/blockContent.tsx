@@ -66,6 +66,10 @@ const VideoRender = ({children}: any) => {
   return <span style={{textDecoration: 'underline', color: 'darkgoldenrod'}}>{children}</span>
 }
 
+const TableStyle = (props: any) => (
+  <span style={{fontFamily: 'Garamond', color: 'darkorange'}}>{props.children} </span>
+)
+
 export default {
   title: 'Block Content',
   name: 'blockContent',
@@ -87,6 +91,7 @@ export default {
         {title: 'H5', value: 'h5'},
         {title: 'H6', value: 'h6'},
         {title: 'Quote', value: 'blockquote'},
+        {title: 'table', value: 'table', component: TableStyle},
       ],
       lists: [
         {title: 'Bullet', value: 'bullet'},
@@ -122,7 +127,7 @@ export default {
               {
                 title: 'URL',
                 name: 'href',
-                type: 'url',
+                type: 'string',
               },
             ],
           },
