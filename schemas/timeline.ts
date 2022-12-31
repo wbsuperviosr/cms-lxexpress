@@ -18,8 +18,8 @@ export default {
       name: 'title',
       title: '事件标题',
       type: 'string',
-      description: '事件标题，请尽量控制在20字之内。',
-      validation: (Rule: Rule) => Rule.required().max(20).error('字数超过了20字。'),
+      description: '事件标题，请尽量控制在50字之内。',
+      validation: (Rule: Rule) => Rule.required().max(50).error('字数超过了50字。'),
     },
 
     {
@@ -113,6 +113,13 @@ export default {
         }),
     },
     {
+      name: 'order',
+      title: '顺序',
+      description:
+        '时间线的顺序，插入请输入对应以前以后顺序的中间值。例如下一个事件的顺序值是5，上一个是4，则可以插入任何4和5之间的数，例如4.3',
+      type: 'number',
+    },
+    {
       name: 'people',
       title: '人物',
       type: 'array',
@@ -200,6 +207,18 @@ export default {
               name: 'urlField',
               type: 'string',
             },
+            {
+              title: '宽度',
+              description: '图片/视频宽度',
+              name: 'width',
+              type: 'string',
+            },
+            {
+              title: '高度',
+              description: '图片/视频高度',
+              name: 'height',
+              type: 'string',
+            },
           ],
         },
       ],
@@ -225,7 +244,7 @@ export default {
       type: 'string',
       validation: (Rule: Rule) => Rule.required().error('请根据以下列表选择事件性质'),
       options: {
-        list: ['人物前情', '公器失位', '归案构陷', '案发当日', '舆论失焦'],
+        list: ['人物前情', '公器失位', '真假风云', '事件推进', '舆论递进'],
         layout: 'radio',
       },
     },
@@ -245,7 +264,6 @@ export default {
       title: '事件内容',
       description: '为了阅读体验，请尽量不要超过140字',
       type: 'blockContent',
-      validation: (Rule: Rule) => Rule.required().error('请填写事件具体内容'),
     },
   ],
   orderings: [
@@ -253,6 +271,11 @@ export default {
       title: '日期',
       name: 'sortDate',
       by: [{field: 'date', direction: 'desc'}],
+    },
+    {
+      title: '顺序值',
+      name: 'sortOrder',
+      by: [{field: 'order', direction: 'desc'}],
     },
     {
       title: '事件性质',
