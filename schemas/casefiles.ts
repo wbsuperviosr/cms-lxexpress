@@ -38,6 +38,12 @@ export default {
       validation: (Rule: Rule) => Rule.required().error('请输入卷宗链接，至少5个字符'),
     },
     {
+      name: 'order',
+      title: '顺序值',
+      description: '用于排列卷宗的顺序值（整数或者小数）',
+      type: 'number',
+    },
+    {
       name: 'imageonly',
       title: '图片卷宗',
       description: '该卷宗是否仅有图片格式',
@@ -142,10 +148,36 @@ export default {
     },
   ],
 
+  orderings: [
+    {
+      title: '顺序值',
+      name: 'sortOrder',
+      by: [{field: 'order', direction: 'asc'}],
+    },
+    {
+      title: '写作时间',
+      name: 'sortWrittenAt',
+      by: [{field: 'writtenAt', direction: 'asc'}],
+    },
+    {
+      title: '发表时间',
+      name: 'sortPublishAt',
+      by: [{field: 'publishedAt', direction: 'asc'}],
+    },
+  ],
+
   preview: {
     select: {
       title: 'title',
       subtitle: 'description',
+      order: 'order',
+    },
+    prepare(selection: any) {
+      const {subtitle, order} = selection
+      const f = order ? order : ''
+      return Object.assign({}, selection, {
+        subtitle: `${f} ${subtitle}`,
+      })
     },
   },
 }
