@@ -120,7 +120,7 @@ export default {
       description: '请点击下拉菜单进行选择',
       type: 'string',
       options: {
-        list: ['搜查报告书', '笔录陈述书', '公审辩论书', '询问笔录书'],
+        list: ['搜查报告书', '笔录陈述书', '公审辩论书', '询问笔录书', '法院判决书'],
         layout: 'radio',
       },
     },
