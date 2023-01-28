@@ -57,7 +57,7 @@ export default {
       description: '分类',
       type: 'string',
       options: {
-        list: ['价值讨论', '法律研讨', '案情推理', '创意作品'],
+        list: ['价值讨论', '法律研讨', '案情推理', '创意作品', '媒体报道'],
         layout: 'radio',
       },
       validation: (Rule: Rule) => {
