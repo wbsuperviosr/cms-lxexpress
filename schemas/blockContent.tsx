@@ -8,8 +8,8 @@
  *    type: 'blockContent'
  *  }
  */
-import React from 'react'
-// import { PhoneIcon } from '@heroicons/react/24/solid'
+// import React, {ReactNode} from 'react'
+// import {Rule} from 'sanity'
 
 const UnderlineIcon = () => {
   return <span style={{textDecoration: 'underline'}}>U</span>
@@ -69,6 +69,40 @@ const VideoRender = ({children}: any) => {
 const TableStyle = (props: any) => (
   <span style={{fontFamily: 'Garamond', color: 'darkorange'}}>{props.children} </span>
 )
+
+// interface AuxProps {
+//   children: ReactNode
+// }
+
+// export class CiteRender extends React.Component<AuxProps> {
+//   static count = 0
+//   constructor(props: AuxProps) {
+//     super(props)
+//   }
+//   render(): React.ReactNode {
+//     CiteRender.count += 1
+//     return (
+//       <span style={{textDecoration: 'underline', color: '#darkorange'}}>{this.props.children}</span>
+//     )
+//   }
+// }
+
+const CiteRender = ({children}: any) => {
+  return <span style={{textDecoration: 'underline', color: 'darkorange'}}>{children}</span>
+}
+
+const CiteIcon = () => {
+  return (
+    <span>
+      <svg style={{width: '1em', height: '1em'}} className="svg-icon" viewBox="0 0 25 25">
+        <path
+          fill="gray"
+          d="M0 23.938v-13.5s1.688-2.531 6.125-2.531c4.469 0 5.875 2.406 5.875 2.406s1.406-2.406 5.875-2.406c4.438 0 6.125 2.531 6.125 2.531v13.5s-2.969-2.188-6.188-2.188c-3.188 0-5.813 2.344-5.813 2.344s-2.625-2.344-5.813-2.344c-3.219 0-6.188 2.188-6.188 2.188zM2.031 10.969v9.813s1.281-0.969 4.344-0.969c3.031 0 4.625 1.813 4.625 1.813v-10.219s-2.156-1.563-4.875-1.563c-2.688 0-4.094 1.125-4.094 1.125zM13 11.406v10.219s1.5-1.813 4.625-1.813c3.094 0 4.344 0.969 4.344 0.969v-9.813s-1.406-1.125-4.094-1.125c-2.719 0-4.875 1.563-4.875 1.563z"
+        ></path>
+      </svg>
+    </span>
+  )
+}
 
 export default {
   title: 'Block Content',
@@ -168,6 +202,67 @@ export default {
                 title: 'URL',
                 name: 'href',
                 type: 'string',
+              },
+            ],
+          },
+          // {
+          //   title: 'Cite',
+          //   name: 'Citelink',
+          //   type: 'object',
+          //   options: {
+          //     modal: {
+          //       type: 'fold',
+          //       width: 'medium',
+          //     },
+          //   },
+          //   icon: CiteIcon,
+          //   component: CiteRender,
+          //   fields: [
+          //     {
+          //       title: 'cite',
+          //       name: 'citeref',
+          //       type: 'string',
+          //     },
+          //   ],
+          // },
+          {
+            title: 'Cite',
+            name: 'Citelink',
+            type: 'object',
+            options: {
+              modal: {
+                type: 'fold',
+                width: 'medium',
+              },
+            },
+            icon: CiteIcon,
+            component: CiteRender,
+            fields: [
+              {
+                title: 'cite',
+                name: 'reference',
+                type: 'array',
+                of: [
+                  {
+                    title: 'reference url',
+                    name: 'reference_url',
+                    type: 'object',
+                    fields: [
+                      {
+                        title: 'title',
+                        description: 'name of the article',
+                        name: 'title',
+                        type: 'string',
+                      },
+                      {
+                        title: 'url',
+                        description: 'url of the article',
+                        name: 'urlField',
+                        type: 'string',
+                      },
+                    ],
+                  },
+                ],
               },
             ],
           },

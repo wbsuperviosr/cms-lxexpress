@@ -146,6 +146,44 @@ export default {
       description: '卷宗内容',
       type: 'blockContent',
     },
+    {
+      name: 'related',
+      title: '更多阅读',
+      description:
+        '用于作证事件的图片链接和标题，若未知可以留空。点击下方Add item进行添加，添加完毕后随意点击弹窗之外的地方就可以保存并且自动保存。',
+      type: 'array',
+      of: [
+        {
+          title: '文章链接',
+          name: 'article_url',
+          type: 'object',
+          fields: [
+            {
+              title: '名称',
+              description: '文章的标题名称',
+              name: 'title',
+              type: 'string',
+              validation: (Rule: Rule) => Rule.required().error('文章名称不能为空'),
+            },
+            {
+              title: '链接',
+              description: '文章链接',
+              name: 'urlField',
+              type: 'string',
+              validation: (Rule: Rule) => Rule.required().error('文章名称不能为空'),
+            },
+            {
+              title: '专栏',
+              description: '专栏名称',
+              name: 'category',
+              type: 'string',
+              validation: (Rule: Rule) =>
+                Rule.required().max(4).error('专栏名称不能为空且必须为4个字'),
+            },
+          ],
+        },
+      ],
+    },
   ],
 
   orderings: [
